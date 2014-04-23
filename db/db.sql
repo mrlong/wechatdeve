@@ -13,23 +13,22 @@
 /*公司*/
 create table if not exists `ims_members_group` (
   `id` int(10) unsigned not null auto_increment,
-  `name` varchar(50) not null,comment'公司名称'  
+  `name` varchar(50) not null comment'公司名称',  
   `modules` varchar(5000) not null default '',
   `templates` varchar(5000) not null default '',
   `maxaccount` int(10) unsigned not null default '0' comment '0为不限制',
   `maxsubaccount` int( 10 ) unsigned not null comment '子公号最多添加数量，为0为不可以添加',
   primary key (`id`)
-) engine=myisam  default charset=utf8;
+) engine=myisam  default charset=utf8 comment='公司表';
 
 /*用户信息*/
 create table if not exists `ims_members` (
   `uid` int(10) unsigned not null auto_increment comment '用户编号',
-  `groupid` int(10) unsigned not null default '0',
+  `groupid` int(10) unsigned not null default '0' comment '哪个公司',
   `username` varchar(30) not null comment '用户名',
   `password` varchar(200) not null comment '用户密码',
-  `salt` varchar(10) not null comment '加密盐',
   `status` tinyint(4) not null default '0' comment '会员状态，0正常，-1禁用',
-  `joindate` int(10) unsigned not null default '0' comment '注册时间',
+  `joindate` datetime not null default CURRENT_TIMESTAMP comment '注册时间',
   `joinip` varchar(15) not null default '',
   `lastvisit` int(10) unsigned not null default '0',
   `lastip` varchar(15) not null default '',
@@ -44,6 +43,7 @@ create table if not exists `ims_members` (
   `hash` char(5) not null comment '用户标识. 随机生成保持不重复',
   `type` tinyint(1) unsigned not null default '1' comment '公众号类型，1微信',
   `uid` int(10) unsigned not null comment '关联的用户',
+  `groupid` int(10) unsigned not null default '0' comment '哪个公司',
   `token` varchar(32) not null comment '随机生成密钥',
   `access_token` varchar(300) not null default '' comment '存取凭证结构',
   `name` varchar(30) not null comment '公众号名称',
@@ -53,7 +53,7 @@ create table if not exists `ims_members` (
  
   primary key (`weid`),
   unique key `hash` (`hash`)
-) engine=myisam  default charset=utf8;
+) engine=myisam  default charset=utf8 comment='公众平台微信号';
 
  /*粉丝*/
  create table if not exists `ims_fans` (
@@ -114,6 +114,12 @@ create table if not exists `ims_members` (
 
 
 /*在线的问题*/
+
+
+
+------------------------------------初期化内容-----------------------------
+insert into ims_members_group (name,maxsubaccount) values('杭州某某公司',2);
+insert into ims_members (groupid,username,password,joindate) values(0,'mrlong','123456',now());
 
 
 
