@@ -10,6 +10,7 @@
  *
  */
 
+var config = require('./config');
 var express = require('express');
 var app = express();
 
@@ -36,4 +37,4 @@ app.use('/admin',require('./admin/router.js'));
 app.use('/',require('./home/router.js'));
 
 
-app.listen(3000);
+app.listen(config.port);
