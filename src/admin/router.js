@@ -4,7 +4,7 @@ var router = express.Router();
 
 
 router.use('/', function(req, res){
-  res.send('Hello World');
+  res.send('Hello World-admin');
 });
 
 

@@ -10,6 +10,17 @@
  *
  */
 
+/*公司*/
+create table if not exists `ims_members_group` (
+  `id` int(10) unsigned not null auto_increment,
+  `name` varchar(50) not null,comment'公司名称'  
+  `modules` varchar(5000) not null default '',
+  `templates` varchar(5000) not null default '',
+  `maxaccount` int(10) unsigned not null default '0' comment '0为不限制',
+  `maxsubaccount` int( 10 ) unsigned not null comment '子公号最多添加数量，为0为不可以添加',
+  primary key (`id`)
+) engine=myisam  default charset=utf8;
+
 /*用户信息*/
 create table if not exists `ims_members` (
   `uid` int(10) unsigned not null auto_increment comment '用户编号',
