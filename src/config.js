@@ -13,9 +13,9 @@
     appsecret:"eace164dedd242dfc74b9a79b9bbd0c7"
   },
   mysql:{
-    host     : 'localhost',
+    host     : '192.168.1.58',
     user     : 'root',
-    password : '7895123',
+    password : 'qzh456123',
     database : 'wechat'
   }
 }; 

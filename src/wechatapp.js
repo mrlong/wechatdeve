@@ -19,11 +19,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/uploads'));
 app.engine('html', require('ejs').renderFile);
 
-app.set('views', __dirname + '/views');
-
-// Without this you would need to
-// supply the extension to res.render()
-// ex: res.render('users.html').
+//app.set('views', __dirname + '/views');
 app.set('view engine', 'html');
 
 app.use(function(req, res, next){
@@ -31,10 +27,16 @@ app.use(function(req, res, next){
   next();
 });
 
-
 app.use('/wechat',require('./wechat/router.js'));
-app.use('/admin',require('./admin/router.js'));
-app.use('/',require('./home/router.js'));
+require('./home/router')(app, {baseurl:'/'});
 
+//require('./router')(app, { verbose: !module.parent});
+
+//app.use('/admin',require('./admin/router.js'));
+//app.use('/',require('./home/router.js'));
+
+/*app.use(function(req, res, next){
+  res.status(404).render('404', {url: req.originalUrl});
+});*/
 
 app.listen(config.port);

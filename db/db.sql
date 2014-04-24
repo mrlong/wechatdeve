@@ -26,9 +26,9 @@ create table if not exists `ims_members` (
   `uid` int(10) unsigned not null auto_increment comment '用户编号',
   `groupid` int(10) unsigned not null default '0' comment '哪个公司',
   `username` varchar(30) not null comment '用户名',
-  `password` varchar(200) not null comment '用户密码',
+  `password` varchar(200) not null comment '用户密码,md5码',
   `status` tinyint(4) not null default '0' comment '会员状态，0正常，-1禁用',
-  `joindate` datetime not null default CURRENT_TIMESTAMP comment '注册时间',
+  `joindate` timestamp not null default CURRENT_TIMESTAMP comment '注册时间戳',
   `joinip` varchar(15) not null default '',
   `lastvisit` int(10) unsigned not null default '0',
   `lastip` varchar(15) not null default '',
@@ -119,7 +119,11 @@ create table if not exists `ims_members` (
 
 ------------------------------------初期化内容-----------------------------
 insert into ims_members_group (name,maxsubaccount) values('杭州某某公司',2);
-insert into ims_members (groupid,username,password,joindate) values(0,'mrlong','123456',now());
+insert into ims_members (groupid,username,password) values(0,'mrlong',MD5('123456'));
+
+
+
+
 
 
 
