@@ -6,6 +6,7 @@
 
 
  module.exports = { 
+  debug:false,
   port: 3004,
   wechat:{
     token:"mrlongwechat",
