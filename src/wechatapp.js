@@ -28,7 +28,8 @@ app.use(function(req, res, next){
 });
 
 app.use('/wechat',require('./wechat/router.js'));
-require('./home/router')(app, {baseurl:'/'});
+require('./router')(app, {baseurl:'/'});
+//require('./home/router')(app, {baseurl:'/'});
 
 //require('./router')(app, { verbose: !module.parent});
 

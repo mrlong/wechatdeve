@@ -3,51 +3,76 @@ var express = require('express');
 var fs = require('fs');
 var router = express.Router();
 
-module.exports = function(parent, options){
-  var verbose = options.verbose;
-  var baseurl = options.baseurl || '/';  // /admin
+module.exports = function(app, options){
+  [
+    {name:'home',baseurl:'/'},
+    {name:'admin',baseurl:'/admin'}
 
-  fs.readdirSync(__dirname + '/controllers').forEach(function(name){
-    var obj = require('./controllers/' + name);
-    var name = obj.name || name;
-    var url  = obj.url || name;
-    var app  = express();
-    
-    var method;
-    var path;
+  ].forEach(function(item){
+    var sysdir = __dirname + '/' + item.name;
+    console.log(sysdir);
+    loadSubSystem(app,{baseurl:item.baseurl},sysdir);
+  });
+};
 
-    app.set('views', __dirname + '/controllers/' + name + '/views');
 
-    // before middleware support
-    if (obj.before) {
-      path = url;
-      router.all(path, obj.before);
-    }
+//加载子系统。
+function loadSubSystem(app, options,sysdir){
+  var baseurl = options.baseurl || '/';  
+  fs.readdirSync(sysdir+'/controllers/').forEach(function(name){
+    var tmpPath = sysdir + '/controllers/' + name;
+    //console.log(tmpPath);
+    //目录，遍历子目的文件
+    if (fs.statSync(tmpPath).isDirectory()){
+      fs.readdir(tmpPath,function(err,files){
+        if(!err){
+          files.forEach(function(item) {
+            var cfilename = tmpPath + '/' + item;
+            if (fs.statSync(cfilename).isFile() && cfilename.indexOf('.cjs')>0){
+              loadController(cfilename,baseurl,sysdir);
+            };
+          });
+        };
+      });
+    };
+  });
+  app.use(baseurl,router);
+};
+
+
+function loadController(filename,baseurl,sysdir){
+
+  var obj = require(filename);
+  var name = obj.name || name;
+  var url = obj.url!=null?obj.url:name;
+  var path = baseurl + url;
+
+  // before middleware support
+  router.all(path,function(req,res,next){
+    var app = req.app;
+    app.set('views', sysdir + '/views');
+    next();
+  });
+
+  if (obj.before) {
+    router.all(path, obj.before);
+  }
 
     // generate routes based
     // on the exported methods
-    for (var key in obj) {
+
+  for (var key in obj) {
       // "reserved" exports
-      if (~['name', 'url', 'engine', 'before'].indexOf(key)) continue;
-      
-      path = baseurl + url;
-      // route exports
-      switch (key) {
-        case 'get':
-          router.get(path,obj[key]);
-          break;
-        case 'post':
-          router.post(path,obj[key]);
-          break;
-        default:
-          throw new Error('unrecognized route: ' + name + '.' + key);
-      }
+    if (~['name', 'url', 'engine', 'before'].indexOf(key)) continue;  
 
-      
-      verbose && console.log('     %s %s -> %s', key.toUpperCase(), path, key);
+    if (['get', 'post'].indexOf(key)>=0){  
+      console.log(key);  
+      router[key](path,obj[key]);
+
+      console.log(path+ ':' + key);
     }
-
-    // mount the app
-    parent.use(baseurl,router);
-  });
+    else{
+      throw new Error('unrecognized route: ' + name + '.' + key);
+    };
+  };
 };
