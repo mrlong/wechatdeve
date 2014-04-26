@@ -1,5 +1,5 @@
 
-exports.url = 'a';
+//exports.url = 'a';
 
 exports.before = function(req, res, next){
   console.log('before');

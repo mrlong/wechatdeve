@@ -14,11 +14,9 @@ var config = require('./config');
 var express = require('express');
 var app = express();
 
-
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/uploads'));
 app.engine('html', require('ejs').renderFile);
-
 //app.set('views', __dirname + '/views');
 app.set('view engine', 'html');
 
@@ -28,7 +26,7 @@ app.use(function(req, res, next){
 });
 
 app.use('/wechat',require('./wechat/router.js'));
-require('./router')(app, {baseurl:'/'});
+require('./router')(app);
 //require('./home/router')(app, {baseurl:'/'});
 
 //require('./router')(app, { verbose: !module.parent});

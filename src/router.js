@@ -3,7 +3,7 @@ var express = require('express');
 var fs = require('fs');
 var router = express.Router();
 
-module.exports = function(app, options){
+module.exports = function(app){
   [
     {name:'home',baseurl:'/'},
     {name:'admin',baseurl:'/admin'}
@@ -29,7 +29,7 @@ function loadSubSystem(app, options,sysdir){
           files.forEach(function(item) {
             var cfilename = tmpPath + '/' + item;
             if (fs.statSync(cfilename).isFile() && cfilename.indexOf('.cjs')>0){
-              loadController(cfilename,baseurl,sysdir);
+              loadController(cfilename,baseurl,sysdir,name);
             };
           });
         };
@@ -40,11 +40,11 @@ function loadSubSystem(app, options,sysdir){
 };
 
 
-function loadController(filename,baseurl,sysdir){
+function loadController(filename,baseurl,sysdir,name){
 
   var obj = require(filename);
   var name = obj.name || name;
-  var url = obj.url!=null?obj.url:name;
+  var url = obj.url!=null?obj.url:name;  //如没有写url则按目录名来。
   var path = baseurl + url;
 
   // before middleware support
@@ -60,7 +60,6 @@ function loadController(filename,baseurl,sysdir){
 
     // generate routes based
     // on the exported methods
-
   for (var key in obj) {
       // "reserved" exports
     if (~['name', 'url', 'engine', 'before'].indexOf(key)) continue;  
