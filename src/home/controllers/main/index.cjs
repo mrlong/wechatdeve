@@ -2,7 +2,7 @@
 exports.url = '';
 
 exports.before = function(req, res, next){
-  console.log('before');
+  console.log('before3');
   next();
 };
 

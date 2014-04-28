@@ -13,4 +13,9 @@ connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
   console.log('The solution is: ', rows[0].solution);
 });
 
+connection.query('select * from ims_members',function(err,rows){
+
+	console.log(rows[0].username);
+});
+
 connection.end();

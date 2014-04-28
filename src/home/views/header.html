@@ -5,7 +5,7 @@
     <meta name="description" content="">
     <meta name="author" content="mrlong.com@gmail.com">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>微信公众平台后台服务</title>
+    <title>mrlong app</title>
     <link rel="stylesheet" type="text/css" href="/js/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/js/bootstrap/css/bootstrap-theme.min.css">
     
@@ -17,5 +17,37 @@
   </head>
 <body>
 <div class="container">
+  <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+    <div class="container"> 
+        
+      <div class="navbar-header">
+        <a class="navbar-brand navbar-title" href="/" style="color:#0088CC;">微信公众平台</a>
+      </div>
+        
+      <div class="collapse navbar-collapse navbar-ex9-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/">首页</a></li>
+          <%if(!locals.user){%>
+            <li><a href="/admin">登录</a></li>
+          <%}%>
+          <li><a href="/vip/home">用户中心</a></li>
+          <li><a href="/group/home">工作组</a></li>
+        </ul>
+
+        <%if(locals.user){%>
+          <p class="navbar-text pull-right">
+            <img id="navimg" style="width:  20px;height:20px;" src="/vip/getusericon" class="img-rounded">
+            <a href="/vip" class="navbar-link"><%=locals.user.name%></a>! 
+            <span class="label label-warning"><a href="/logout" class="navbar-link">退出</a></span>
+          </p>
+        <%}%>
+      </div>
+      
+    </div> 
+  </nav>
+
+//margin-top
+<div class="main box" style="margin-top:50px">
+
 
 

@@ -10,7 +10,6 @@ module.exports = function(app){
 
   ].forEach(function(item){
     var sysdir = __dirname + '/' + item.name;
-    console.log(sysdir);
     loadSubSystem(app,{baseurl:item.baseurl},sysdir);
   });
 };
@@ -30,12 +29,13 @@ function loadSubSystem(app, options,sysdir){
             var cfilename = tmpPath + '/' + item;
             if (fs.statSync(cfilename).isFile() && cfilename.indexOf('.cjs')>0){
               loadController(cfilename,baseurl,sysdir,name);
+              
             };
           });
         };
       });
     };
-  });
+  }); //end fs
   app.use(baseurl,router);
 };
 
@@ -63,9 +63,10 @@ function loadController(filename,baseurl,sysdir,name){
   for (var key in obj) {
       // "reserved" exports
     if (~['name', 'url', 'engine', 'before'].indexOf(key)) continue;  
+    if (path==='') continue;
 
     if (['get', 'post'].indexOf(key)>=0){  
-      console.log(key);  
+      console.log('key:' + key);  
       router[key](path,obj[key]);
 
       console.log(path+ ':' + key);

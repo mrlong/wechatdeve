@@ -34,8 +34,8 @@ require('./router')(app);
 //app.use('/admin',require('./admin/router.js'));
 //app.use('/',require('./home/router.js'));
 
-/*app.use(function(req, res, next){
-  res.status(404).render('404', {url: req.originalUrl});
-});*/
+app.use(function(req, res, next){
+  res.status(404).render(__dirname+'/public/views/404', {url: req.originalUrl});
+});
 
 app.listen(config.port);
