@@ -134,15 +134,27 @@ mysql.prototype.test = function(){
   };
 };
 
+/*
+ * callback(err)
+ *  
+ *
+ *
+ */
 mysql.prototype.beginTransaction=function(callback){
   if(this.connection){
-    this.connection.commit(callback);
+    this.connection.beginTransaction(callback);
   }
   else{
     if(callback){callback(new Error('没有打开数据库，请执行open。'),null)};
   }
 };
 
+/*
+ * callback(err)
+ *  
+ *
+ *
+ */
 mysql.prototype.commit=function(callback){
   if(this.connection){
     this.connection.commit(callback);
@@ -152,9 +164,20 @@ mysql.prototype.commit=function(callback){
   }
 };
 
+/*
+ * callback(err)
+ *  
+ *
+ *
+ */
 mysql.prototype.rollback=function(callback){
   if(this.connection){
-    this.connection.commit(callback);
+    if(callback){
+      this.connection.rollback(callback);
+    }
+    else{
+      this.connection.rollback(function(err){});
+    }
   }
   else{
     if(callback){callback(new Error('没有打开数据库，请执行open。'),null)};

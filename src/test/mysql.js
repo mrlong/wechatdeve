@@ -50,15 +50,17 @@ sql.open(function(err){
   	});
 
   	sql.beginTransaction(function(err){
-  		sql.query('update ims_members set username="mrlog2"',function(err,result){
+  		sql.query('update ims_members set username=?',['mrlong2'],function(err,result){
   			if(err){
   				console.log(err);
+          sql.rollback();
   			}
   			else {
   				console.log(result.changedRows);
+          sql.commit();
   			}
   		});
-  		sql.rollback();
+  		
   	});
 
   	sql.close();
