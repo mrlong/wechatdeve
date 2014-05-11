@@ -8,6 +8,9 @@
     "ejs" : "*",
     "wechat":"*",
     "mysql":"*",
-    "body-parser":"*"
+    "body-parser":"*",
+    "cookie-session":"*",
+    "cookie-parser":"*",
+    "async":"*" 
   }
 }

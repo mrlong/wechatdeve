@@ -14,6 +14,8 @@ var config = require('./config');
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var session = require('cookie-session');
+var cookieParser = require('cookie-parser');
 
 app.use(bodyParser());
 app.use(express.static(__dirname + '/public'));
@@ -28,6 +30,13 @@ if (config.debug==true){
 else{
   app.set('view cache', true);
 };
+
+app.use(cookieParser());
+app.use(session({
+  secret: config.cookieSecret, 
+  key: 'wechatapp', 
+  cookie: { secure: false,maxAge: 1000 * 60 * 60 * 24 * 7 }  //7天保存
+}));
 
 app.use(function(req, res, next){
   console.log('%s %s %s', req.ip,req.method, req.url);

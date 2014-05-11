@@ -29,14 +29,16 @@ mysql.prototype.open = function(callback){
       //process.exit(1);
     }
     else{
+      config.debug || console.log('mysql.open()');
       if (callback) {callback(null);};
     }
   });
 };
 
-mysql.prototype.close = function(){
+mysql.prototype.close = function(callback){
   if (this.connection){
-    this.connection.end();  
+    config.debug || console.log('mysql.close()');
+    this.connection.end(callback);  
   };
 };
 
@@ -89,6 +91,8 @@ mysql.prototype.query = function(sql,data,callback){
       mycallback = callback;
       mydata = data;
     };
+
+    config.debug || console.log(' mysql.query()');
 
     this.connection.query(sql,data,function(err,rows){
       if(err){

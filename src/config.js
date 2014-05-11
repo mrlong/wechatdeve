@@ -9,6 +9,8 @@
   title: 'mrlong.cn',
   debug:false,
   port: 3004,
+  cookieSecret:'mrlong.cn',
+  
   wechat:{
     token:"mrlongwechat",
     appid:"wx4e1abb249fe9b751",
