@@ -6,6 +6,7 @@
 
 
  module.exports = { 
+  title: 'mrlong.cn',
   debug:false,
   port: 3004,
   wechat:{

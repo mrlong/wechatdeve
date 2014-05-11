@@ -2,13 +2,10 @@
 var express = require('express');
 var fs = require('fs');
 var router = express.Router();
+var subapp = require('./subapp');
 
 module.exports = function(app){
-  [
-    {name:'home',baseurl:'/'},
-    {name:'admin',baseurl:'/admin'}
-
-  ].forEach(function(item){
+  subapp.forEach(function(item){
     var sysdir = __dirname + '/' + item.name;
     loadSubSystem(app,{baseurl:item.baseurl},sysdir);
   });

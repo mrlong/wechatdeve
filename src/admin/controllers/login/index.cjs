@@ -37,10 +37,7 @@ exports.post=function(req,res,next){
   				}
   			});
   	}
-  	mysql.close();
+  	mysql.close(); //?????注意异步情况
   });
-  
-  
-
-  
+  //res.redirect('/admin?again=true');    
 }
