@@ -1,8 +1,14 @@
+/*
+ *
+ *  后台管理内容
+ *  mrlong  2014-4-27
+ *
+ *
+ */
 
-exports.url = '';
+
 
 exports.before = function(req, res, next){
-  console.log('before3');
   next();
 };
 

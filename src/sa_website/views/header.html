@@ -29,10 +29,9 @@
         <ul class="nav navbar-nav">
           <li class="active"><a href="/">首页</a></li>
           <%if(!locals.user){%>
-            <li><a href="/admin">登录</a></li>
+            <li><a href="/login">登录</a></li>
           <%}%>
-          <li><a href="/vip/home">用户中心</a></li>
-          <li><a href="/group/home">工作组</a></li>
+          <li><a href="/home">用户中心</a></li>
         </ul>
 
         <%if(locals.user){%>
@@ -47,7 +46,6 @@
     </div> 
   </nav>
 
-//margin-top
 <div class="main box" style="margin-top:50px">
 
 

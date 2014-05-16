@@ -5,26 +5,25 @@
  *
  *
  */
+var express = require('express');
+var router = express.Router();
 
 var MySQL = require('../../../lib/db.js');
 var async = require('async');
 
-exports.url = '';
-exports.before = function(req,res,next){
-  next();
-};
 
-exports.get = function(req,res,next){
-	var again = req.query.again||false;
+
+router.get('/',function(req,res,next){
+  var again = req.query.again||false;
   if(req.session.curruser){
     res.render('login/loginsuccess',req.session.curruser);
   }
   else{
     res.render('login/login',{again:again});
   };
-};
+});
 
-exports.post=function(req,res,next){
+router.post('/',function(req,res,next){
   var loginname = req.body.loginname;
   var password = req.body.password;
   console.log(req.session.curruser);
@@ -44,13 +43,15 @@ exports.post=function(req,res,next){
           if(req.body.rememberme=='true'){
             req.session.curruser = values[1][0];
           };
-          res.render('login/loginsuccess',values[1][0]);
+          res.render('index/index',values[1][0]);
         }
         else{
-          res.redirect('/admin?again=true');
+          res.redirect('/login?again=true');
         }
       };
       console.log(values)
     }
   );
-}
+});
+
+module.exports = router;
