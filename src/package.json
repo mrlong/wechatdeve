@@ -9,8 +9,10 @@
     "wechat":"*",
     "mysql":"*",
     "body-parser":"*",
-    "cookie-session":"*",
+    "express-session":"*",
     "cookie-parser":"*",
-    "async":"*" 
+    "async":"*" ,
+    "crypto":"*",
+    "morgan":"*"
   }
 }

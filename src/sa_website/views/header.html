@@ -17,7 +17,7 @@
 
   </head>
 <body>
-<div class="container">
+<div class="container1">
   <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
     <div class="container"> 
         
@@ -28,16 +28,25 @@
       <div class="collapse navbar-collapse navbar-ex9-collapse">
         <ul class="nav navbar-nav">
           <li class="active"><a href="/">首页</a></li>
-          <%if(!locals.user){%>
-            <li><a href="/login">登录</a></li>
-          <%}%>
-          <li><a href="/home">用户中心</a></li>
+
+          <li><a href="#">功能介绍</a></li>
+          <li><a href="/home">管理中心</a></li>          
+
         </ul>
 
-        <%if(locals.user){%>
+        <%if(!locals.curruser){%>
+
+            <form class="navbar-form navbar-right pull-right" role="form">
+              <a href="/login" class="btn btn-success">登录</a>
+              <a href="/signup" class="btn btn-default ">注册</a>
+            </form>
+
+          <%}%>
+
+        <%if(locals.curruser){%>
           <p class="navbar-text pull-right">
-            <img id="navimg" style="width:  20px;height:20px;" src="/vip/getusericon" class="img-rounded">
-            <a href="/vip" class="navbar-link"><%=locals.user.name%></a>! 
+            <img id="navimg" style="width:  20px;height:20px;" src="/img/no_head.png" class="img-rounded">
+            <a href="/vip" class="navbar-link"><%=locals.curruser.username%></a>! 
             <span class="label label-warning"><a href="/logout" class="navbar-link">退出</a></span>
           </p>
         <%}%>

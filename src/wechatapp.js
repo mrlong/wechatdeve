@@ -14,9 +14,14 @@ var config = require('./config');
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var session = require('cookie-session');
+var session = require('express-session');
 var cookieParser = require('cookie-parser');
+var logger = require('morgan');
 
+config.appdir        = __dirname;
+config.viewdir       = __dirname + '/public/views';
+
+app.use(logger({ format: 'dev', immediate: true }));
 app.use(bodyParser());
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/uploads'));
@@ -27,6 +32,7 @@ app.set('view engine', 'html');
 app.set('view cache', false);
 app.use(cookieParser());
 app.use(session({
+	name:'wechatapp',
   secret: config.cookieSecret, 
   key: 'wechatapp', 
   cookie: { secure: false,maxAge: 1000 * 60 * 60 * 24 * 7 }  //7天保存
@@ -35,6 +41,11 @@ app.use(session({
 app.use(function(req, res, next){
   console.log('%s %s %s', req.ip,req.method, req.url);
   next();
+});
+
+app.use(function(req,res,next){
+	res.locals.config = config;
+	next();
 });
 
 app.use('/wechat',require('./wechat'));

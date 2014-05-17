@@ -7,10 +7,10 @@
 
  module.exports = { 
   title: 'mrlong.cn',
+  company:'龙仕云',
   debug:false,
   port: 3004,
   cookieSecret:'mrlong.cn',
-  
   wechat:{
     token:"mrlongwechat",
     appid:"wx4e1abb249fe9b751",

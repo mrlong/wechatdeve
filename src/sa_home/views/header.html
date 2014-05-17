@@ -19,4 +19,31 @@
 <body>
 <div class="container">
 
+  <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+    <div class="container"> 
+        
+      <div class="navbar-header">
+        <a class="navbar-brand navbar-title" href="/" style="color:#0088CC;">微信公众平台</a>
+      </div>
+        
+      <div class="collapse navbar-collapse navbar-ex9-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="/">首页</a></li>
+          <li class="active"><a href="/home">管理中心</a></li>
+        </ul>
+
+        <%if(locals.curruser){%>
+          <p class="navbar-text pull-right">
+            <img id="navimg" style="width:  20px;height:20px;" src="/img/no_head.png" class="img-rounded">
+            <a href="/vip" class="navbar-link"><%=locals.curruser.username%></a>! 
+            <span class="label label-warning"><a href="/logout" class="navbar-link">退出</a></span>
+          </p>
+        <%}%>
+      </div>
+      
+    </div> 
+  </nav>
+
+<div class="main box" style="margin-top:50px">
+
 
