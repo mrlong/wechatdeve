@@ -1,11 +1,11 @@
-var express = require('express')
-var session = require('cookie-session')
+var express = require('express');
+var session = require('cookie-session');
 
-var app = express()
+var app = express();
 
 app.use(session({
-  secret: 'keyboard cat', 
-  key: 'sid', 
+  secret:'keyboard cat', 
+  key:'sid', 
   cookie: { secure: false }
 }));
 

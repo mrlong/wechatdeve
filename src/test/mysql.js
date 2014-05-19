@@ -23,7 +23,7 @@ var config = require('../config');
 
 //mysql object
 console.log('aa');
-var mySQL = require('../lib/db');
+var mySQL = require('../lib/mysql');
 sql = new mySQL;
 console.log('11');
 sql.open(function(err){
@@ -38,34 +38,39 @@ sql.open(function(err){
   	console.log('test');
   	console.log(sql.escape('some user provided value'));
   	sql.test(); 
-  	sql.query('select * from ims_members where username=?',['mrlong'],function(err,rows){
+  	sql.query('select * from ims_members where memb_name=?',['mrlong'],function(err,rows){
   		if(err){
   			console.log(err);		
   		}
   		else{
   			if (rows.length >0){
-  				console.log(rows[0].username);
+  				console.log(rows[0].memb_name);
   			}
   		}
   	});
 
-  	sql.beginTransaction(function(err){
-  		sql.query('update ims_members set username=?',['mrlong2'],function(err,result){
-  			if(err){
-  				console.log(err);
-          sql.rollback();
-  			}
-  			else {
-  				console.log(result.changedRows);
-          sql.commit();
-  			}
-  		});
-  		
-  	});
+//  	sql.beginTransaction(function(err){
+//  		sql.query('update ims_members set memb_name=?',['mrlong'],function(err,result){
+//  			if(err){
+//  				console.log(err);
+//          sql.rollback();
+//  			}
+//  			else {
+//  				console.log(result.changedRows);
+//          sql.commit();
+//  			}
+//  		});
+//  		
+//  	});
 
   	sql.close();
   };
 });
+
+mySQL.SqlQuery('select * from ims_members',function(err,result){
+
+});
+
 console.log('22');
 
 

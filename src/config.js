@@ -10,6 +10,7 @@
   company:'龙仕云',
   debug:false,
   port: 3004,
+  sessionSecret:'sfi$sf#@*s',  //cookie加密key
   cookieSecret:'mrlong.cn',
   wechat:{
     token:"mrlongwechat",

@@ -48,6 +48,7 @@ app.use(function(req,res,next){
 	next();
 });
 
+
 app.use('/wechat',require('./wechat'));
 app.use('/',require('./sa_website'));
 app.use('/home',require('./sa_home'));

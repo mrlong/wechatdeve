@@ -8,8 +8,10 @@
 var express = require('express');
 var router = express.Router();
 
-var MySQL = require('../../../lib/db.js');
-var Util  = require('../../../lib/Util');
+var MySQL = require('../../../lib/mysql.js');
+var Util  = require('../../../lib/util');
+var db    = require('../../../lib/db');
+var config = require('../../../config');
 var async = require('async');
 
 
@@ -27,30 +29,39 @@ router.get('/',function(req,res,next){
 router.post('/',function(req,res,next){
   var loginname = req.body.loginname;
   var password = req.body.password;
-  console.log(req.session.curruser);
+  console.log(req.body);
   var mysql = new MySQL;
 
   async.series([
     function(cb){mysql.open(cb)},
     function(cb){
-      mysql.query('select a.*,b.name from ims_members as a,ims_members_group as b ' + 
-        ' where a.groupid=b.id and username=? and password=md5(?)',
+      mysql.query('select a.*,b.megr_name from ims_members as a,ims_members_group as b ' + 
+        ' where a.megr_guid=b.megr_guid and memb_name=? and memb_pw=md5(?)',
         [loginname,password],cb);
     },
     function(cb){mysql.close(cb)}
     ],function(err,values){
       if(!err){
         if(values[1].length>0){
-          //记住密码情况
+          
           req.session.curruser = {
-            username:values[1][0].username,
-            groupid:values[1][0].groupid,
-            groupname:values[1][0].name
+            memb_guid:values[1][0].memb_guid,
+            memb_name:values[1][0].memb_name,
+            megr_guid:values[1][0].megr_guid,
+            megr_name:values[1][0].megr_name
           };
-
-          // if(req.body.rememberme=='true'){
-          //   req.session.curruser = values[1][0];
-          // };
+           //更新登录时间
+          //db.query('update ims_members set memb_lastdate=now() where memb_guid=?',[values[1][0].memb_guid]);
+          //记住密码情况    
+          if(req.body.rememberme=='true'){
+            var auth_token = Util.encrypt(values[1][0].memb_guid + '\t' +
+                                          values[1][0].memb_name + '\t' +
+                                          values[1][0].megr_guid + '\t' +
+                                          values[1][0].megr_name,config.sessionSecret);
+    	    config.debug || console.log(auth_token);
+  		    res.cookie(config.cookieSecret,auth_token,{path:'/',maxAge: 1000 * 60 * 60 * 24 * 7});//7天
+            
+          };
           return res.send(Util.msgBox('登录成功。','/'));
         }
         else{

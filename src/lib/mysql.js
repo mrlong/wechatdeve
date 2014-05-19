@@ -93,8 +93,8 @@ mysql.prototype.query = function(sql,data,callback){
     };
 
     config.debug || console.log(' mysql.query()');
-
-    this.connection.query(sql,data,function(err,rows){
+    //config.debug || console.log(sql);
+    var q = this.connection.query(sql,data,function(err,rows){
       if(err){
         if(callback){callback(err,null)}
       }
@@ -102,6 +102,7 @@ mysql.prototype.query = function(sql,data,callback){
         if(callback){callback(null,rows)};   
       }
     });
+    config.debug || console.log(q.sql);
   }
   else{
     if(callback){callback(new Error('没有打开数据库，请执行open。'),null)}
@@ -187,7 +188,5 @@ mysql.prototype.rollback=function(callback){
     if(callback){callback(new Error('没有打开数据库，请执行open。'),null)};
   }
 };
-
-
 
 module.exports=mysql;
