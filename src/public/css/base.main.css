@@ -1,0 +1,17 @@
+/*左边导航*/
+.panel .panel-heading .icon{
+  float: right;
+  top: 50%;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  margin-top: 2px;
+}
+.panel .panel-heading .badge { float: right; top: 50%; margin-left: 10px;}
+.panel.no_title .panel-heading{
+  display: none;
+}
+
+.panel .panel-body.nopadding{
+  padding: 0px;
+}
