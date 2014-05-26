@@ -1,3 +1,19 @@
+#body-content {
+  margin-top: 65px; 
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.container{
+/*
+  margin: 10px;
+  padding-top:10px;
+  padding :10px;
+*/
+  width: auto;
+}
+
+
 /*左边导航*/
 .panel .panel-heading .icon{
   float: right;

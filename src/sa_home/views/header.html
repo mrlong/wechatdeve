@@ -5,14 +5,15 @@
     <meta name="description" content="">
     <meta name="author" content="mrlong.com@gmail.com">
     <title>微信公众平台后台服务</title>
-    <link href="js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="js/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/js/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/base.main.css" rel="stylesheet">
     <!--[if IE 7]>
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome-ie7.min.css">
     <![endif]-->
     
-    <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap/js/bootstrap.min.js"></script>
     
     
     <!--[if lt IE 9]>
@@ -21,19 +22,28 @@
     <![endif]-->
 
   </head>
+  
+  <style>
+  
+  @media (min-width:1200px)
+    .container {
+        width: 1180px;
+    }
+  </style>
+  
 <body>
-<div class="container">
+<div id="body-content"  style="margin-left:0px">
 
   <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
-    <div class="container"> 
+    <div class="container1" > 
         
       <div class="navbar-header">
-        <a class="navbar-brand navbar-title" href="/" style="color:#0088CC;">微信公众平台</a>
+        <a class="navbar-brand navbar-title" href="/" style="color:#0088CC;"><i class="icon-comments-alt"></i> 微信公众平台</a>
       </div>
         
       <div class="collapse navbar-collapse navbar-ex9-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="/">首页</a></li>
+          <li><a href="/"><i class="icon-home icon-3"></i>首页</a></li>
           <li class="active"><a href="/home">管理中心</a></li>
         </ul>
 
@@ -41,7 +51,7 @@
           <p class="navbar-text pull-right">
             <img id="navimg" style="width:  20px;height:20px;" src="/img/no_head.png" class="img-rounded">
             <a href="/vip" class="navbar-link"><%=locals.curruser.memb_name%></a>! 
-            <span class="label label-warning"><a href="/logout" class="navbar-link">退出</a></span>
+            <span class="label label-warning"><a href="/logout" class="navbar-link"><i class="icon-off"></i>退出</a></span>
           </p>
         <%}%>
       </div>
@@ -50,6 +60,9 @@
   </nav>
 
 <!--main box begin-->
-<div class="main box" style="margin-top:50px">
+<div class="container" >
+  
+<!--左边菜单-->
+<%- include ./left_nav.html %>  
 
 

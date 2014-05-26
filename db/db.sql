@@ -115,7 +115,7 @@ create table if not exists `ims_members` (
 
 
 
-------------------------------------初期化内容-----------------------------
+/*------------------------------------初期化内容-----------------------------*/
 insert into ims_members_group (megr_guid,megr_name,megr_maxsubaccount) values('200eb386-df5a-11e3-882d-fabab65fb985','杭州某某公司',2);
 insert into ims_members (megr_guid,memb_guid,memb_name,memb_pw) values('200eb386-df5a-11e3-882d-fabab65fb985','d6b4263e-df5a-11e3-882d-fabab65fb985 ','mrlong',MD5('123456'));
 

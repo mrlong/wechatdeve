@@ -29,7 +29,8 @@ router.use(function(req,res,next){
 
 //控制器列表。
 [
-	{url:'/',name:'index'}
+	{url:'/',name:'index'},
+    {url:'/changepw',name:'changepw'}
 
 ].forEach(function(item){
 	router.use(item.url,require('./controllers/'+item.name));

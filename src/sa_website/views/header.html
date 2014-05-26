@@ -8,6 +8,7 @@
     <title>mrlong app</title>
     <link rel="stylesheet" type="text/css" href="/js/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/js/bootstrap/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="/js/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     
     <!--[if lt IE 9]>
       <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
@@ -22,7 +23,7 @@
     <div class="container"> 
         
       <div class="navbar-header">
-        <a class="navbar-brand navbar-title" href="/" style="color:#0088CC;">微信公众平台</a>
+        <a class="navbar-brand navbar-title" href="/" style="color:#0088CC;"><i class="icon-comments-alt"></i> 微信公众平台</a>
       </div>
         
       <div class="collapse navbar-collapse navbar-ex9-collapse">
@@ -47,7 +48,7 @@
           <p class="navbar-text pull-right">
             <img id="navimg" style="width:  20px;height:20px;" src="/img/no_head.png" class="img-rounded">
             <a href="/vip" class="navbar-link"><%=locals.curruser.memb_name%></a>! 
-            <span class="label label-warning"><a href="/logout" class="navbar-link">退出</a></span>
+            <span class="label label-warning"><a href="/logout" class="navbar-link"><i class="icon-off"></i>退出</a></span>
           </p>
         <%}%>
       </div>
