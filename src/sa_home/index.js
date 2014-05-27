@@ -30,7 +30,8 @@ router.use(function(req,res,next){
 //控制器列表。
 [
 	{url:'/',name:'index'},
-    {url:'/changepw',name:'changepw'}
+    {url:'/changepw',name:'changepw'},   //修改密码
+    {url:'/profile',name:'profile'}      //修改资料
 
 ].forEach(function(item){
 	router.use(item.url,require('./controllers/'+item.name));

@@ -1,3 +1,34 @@
+<script type="text/javascript"> 
+   /*
+    * 处理当前选中的样式显示内容
+    * 作者：龙仕云  2015-5-27
+    *
+    */
+  
+    $(function(){
+      var olditem = $(".list-group a[class='list-group-item active']");
+      olditem.removeClass('active');
+      var oldparent = olditem.parent();
+      
+      var item = $(".list-group a[href='<%=req_path%>']");
+      item.addClass('active'); 
+      
+      //不一样切换
+      if(oldparent !== item.parent()){
+        
+        oldparent.removeClass('in').attr('style','height: 0px;');
+        oldparent.parent('.panel').removeClass('panel-info').addClass('panel-default');
+        
+        item.parent().addClass('in').attr('style','height: auto;');
+        item.parent().parent('.panel').addClass('panel-info').removeClass('panel-default');
+        
+      }
+      else{
+         // 与原来一样不必设了。
+      }
+    });
+
+</script>
 
 
 <div class="row" >
@@ -25,7 +56,7 @@
         修改密码
       </a>
       
-      <a href="/app/country/" class="list-group-item">
+      <a href="/home/profile" class="list-group-item">
         <i class="icon-fixed-width icon-flag"></i>
         修改资料
       </a>
@@ -178,7 +209,6 @@
 </div> 
 <!-- end nav -->
 </div> 
-
 
     
 <!--右边内容-->
