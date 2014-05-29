@@ -19,6 +19,7 @@ router.use(function(req,res,next){
     	console.log(req.session.curruser);
     	res.locals.curruser = {
             memb_guid:req.session.curruser.memb_guid,
+            memb_loginname:req.session.curruser.memb_loginname,
     		memb_name:req.session.curruser.memb_name,
     		megr_guid:req.session.curruser.megr_guid,
     		megr_name:req.session.curruser.megr_name
@@ -39,9 +40,10 @@ router.use(function(req,res,next){
         if(!err){
           req.session.curruser = {
             memb_guid:auth[0],
-            memb_name:auth[1],
-            megr_guid:auth[2],
-            megr_name:auth[3]};
+            memb_loginname:auth[1],
+            memb_name:auth[2],
+            megr_guid:auth[3],
+            megr_name:auth[4]};
           db.query('update ims_members set memb_lastdate=now() where memb_guid=?',[auth[0]]); //更新登录时间
         };
         

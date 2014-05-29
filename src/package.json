@@ -12,7 +12,7 @@
     "express-session":"*",
     "cookie-parser":"*",
     "async":"*" ,
-    "crypto":"*",
-    "morgan":"*"
+    "morgan":"*",
+    "validator": "=1.5.1"
   }
 }

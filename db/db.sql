@@ -25,7 +25,8 @@ create table if not exists `ims_members_group` (
 create table if not exists `ims_members` (
   `memb_guid` varchar(50) not null  comment '用户编一号',
   `megr_guid` varchar(50) not null  comment '哪个公司',
-  `memb_name` varchar(30) not null comment '用户名',
+  `memb_loginname` varchar(30) not null comment '登录名',
+  `memb_name` varchar(30) not null default '' comment '用户名',
   `memb_pw` varchar(200) not null comment '用户密码,md5码',
   `memb_status` tinyint(4) not null default '0' comment '会员状态，0正常，-1禁用',
   `memb_joindate` timestamp not null default CURRENT_TIMESTAMP comment '注册时间戳',
@@ -34,7 +35,7 @@ create table if not exists `ims_members` (
   `memb_lastip` varchar(15) not null default '',
   `memb_remark` varchar(500) not null default '',
   primary key (`memb_guid`,megr_guid),
-  unique key `memb_name` (`memb_name`)
+  unique key `memb_name` (`memb_loginname`)
 ) engine=myisam  default charset=utf8 comment='用户表';
 
 /*用户下面的微信号*/
@@ -117,7 +118,7 @@ create table if not exists `ims_members` (
 
 /*------------------------------------初期化内容-----------------------------*/
 insert into ims_members_group (megr_guid,megr_name,megr_maxsubaccount) values('200eb386-df5a-11e3-882d-fabab65fb985','杭州某某公司',2);
-insert into ims_members (megr_guid,memb_guid,memb_name,memb_pw) values('200eb386-df5a-11e3-882d-fabab65fb985','d6b4263e-df5a-11e3-882d-fabab65fb985 ','mrlong',MD5('123456'));
+insert into ims_members (megr_guid,memb_guid,memb_loginname,memb_name,memb_pw) values('200eb386-df5a-11e3-882d-fabab65fb985','d6b4263e-df5a-11e3-882d-fabab65fb985 ','mrlong','龙三少',MD5('123456'));
 
 
 

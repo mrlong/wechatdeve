@@ -36,7 +36,7 @@ router.post('/',function(req,res,next){
     function(cb){mysql.open(cb)},
     function(cb){
       mysql.query('select a.*,b.megr_name from ims_members as a,ims_members_group as b ' + 
-        ' where a.megr_guid=b.megr_guid and memb_name=? and memb_pw=md5(?)',
+        ' where a.megr_guid=b.megr_guid and memb_loginname=? and memb_pw=md5(?)',
         [loginname,password],cb);
     },
     function(cb){mysql.close(cb)}
@@ -46,6 +46,7 @@ router.post('/',function(req,res,next){
           
           req.session.curruser = {
             memb_guid:values[1][0].memb_guid,
+            memb_loginname:values[1][0].memb_loginname,
             memb_name:values[1][0].memb_name,
             megr_guid:values[1][0].megr_guid,
             megr_name:values[1][0].megr_name
@@ -55,6 +56,7 @@ router.post('/',function(req,res,next){
           //记住密码情况    
           if(req.body.rememberme=='true'){
             var auth_token = Util.encrypt(values[1][0].memb_guid + '\t' +
+                                          values[1][0].memb_loginname + '\t' +
                                           values[1][0].memb_name + '\t' +
                                           values[1][0].megr_guid + '\t' +
                                           values[1][0].megr_name,config.sessionSecret);

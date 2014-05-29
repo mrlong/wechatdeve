@@ -2,6 +2,40 @@
   
 <%- include ../clinetwin.html %>
 
+<script type="text/javascript" src='/js/bootstrap3-validation.js'></script>
+  
+<script type="text/javascript">
+  $(function(){
+     $("#form1").validation(function(obj,params){
+      if(obj.id=='newpw2'){
+        if(obj.value !== $("#newpw1").val()){
+          params.err = true;
+          params.msg = '两个新密码不一致。';
+        }
+      };
+      
+     
+     });
+    
+    //注册
+    $("#submit").on('click',function(event){
+      // 2.最后要调用 valid()方法。
+      if ($("#form1").valid()==false){
+        $("#error-text").text("填写信息不完整。")
+        return false;
+      }
+      
+      //执行方法
+      var oldpw = $("#oldpw").val();
+      var newpw = $("#newpw1").val();
+      
+      
+    });
+  
+  });  
+</script>
+  
+  
 <ol class="breadcrumb">
   <li><a href="/home">Home</a></li>
   <li class="active"><i class="icon-globe"></i> 修改密码</li>
@@ -9,36 +43,51 @@
   
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading">Panel heading</div>
+  <div class="panel-heading">
+  
+  <ul>
+    <strong>如何使密码更安全？</strong>
+    <li>使用标点符号、数字和大小写字母的组合作为密码。</li>
+    <li>密码中勿包含个人信息（如姓名、生日等）。</li>
+    <li>不使用和其他网站相同的密码。</li>
+    <li>定期修改密码。</li>
+  </ul>
+  </div>
   <div class="panel-body">
-      <form class="form-horizontal" role="form">
+      <form id="form1" class="form-horizontal" role="form"  method="post" action="/home/changepw/do">
         <div class="form-group">
           <label for="oldpw" class="col-sm-2 control-label">原密码：</label>
             <div class="col-sm-5">
-            <input type="password" class="form-control" id="oldpw" name="oldpw" placeholder="原来的密码">
+            <input type="password" class="form-control" id="oldpw" name="oldpw" placeholder="原来的密码" check-type="required">
             </div>
         </div>
         
         <div class="form-group">
           <label for="newpw1" class="col-sm-2 control-label">新密码：</label>
             <div class="col-sm-5">
-            <input type="password" class="form-control" id="newpw1" name="newpw1" placeholder="新密码">
+            <input type="password" class="form-control" id="newpw1" name="newpw1" placeholder="新密码" check-type="required" minlength="6">
             </div>
         </div>
         
         <div class="form-group">
           <label for="newpw2" class="col-sm-2 control-label">确认密码：</label>
             <div class="col-sm-5">
-            <input type="password" class="form-control" id="newpw2" name="newpw2" placeholder="再输入新密码">
+            <input type="password" class="form-control" id="newpw2" name="newpw2" placeholder="再输入新密码" check-type="required" minlength="6">
             </div>
         </div>
         
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-primary">确定修改</button>
-          <button type="submit" class="btn btn-default">重置</button>  
+          <button type="submit" id="submit" class="btn btn-primary">确定修改</button>
+          <button type="reset" class="btn btn-default">重置</button>  
          </div>
-        </div>    
+        </div>  
+        
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <span id="error-text" style="color: #FF0000;"></span>
+          </div>
+        </div>
   </div>
         
       </form>

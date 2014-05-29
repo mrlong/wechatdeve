@@ -77,6 +77,16 @@ mysql.prototype.close = function(callback){
  *
  *     console.log('changed ' + result.changedRows + ' rows');
  *    })
+ *
+ *    rows的内容：
+ *      affectedRows: 0
+ *      changedRows: 0
+ *      fieldCount: 0
+ *      insertId: 0
+ *      message: "(Rows matched: 0  Changed: 0  Warnings: 0"
+ *      protocol41: true
+ *      serverStatus: 2
+ *      warningCount: 0
  */
 
 mysql.prototype.query = function(sql,data,callback){
