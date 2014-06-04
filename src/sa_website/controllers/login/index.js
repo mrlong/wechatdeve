@@ -42,7 +42,7 @@ router.post('/',function(req,res,next){
     function(cb){mysql.close(cb)}
     ],function(err,values){
       if(!err){
-        if(values[1].length>0){
+        if(values[1] && values[1].length>0){
           
           req.session.curruser = {
             memb_guid:values[1][0].memb_guid,
@@ -69,7 +69,10 @@ router.post('/',function(req,res,next){
         else{
           res.redirect('/login?again=true');
         }
-      };
+      }
+      else{
+        res.redirect('/login?again=true');
+      }
       console.log(values)
     }
   );
