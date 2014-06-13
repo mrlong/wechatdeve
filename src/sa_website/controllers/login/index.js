@@ -78,4 +78,9 @@ router.post('/',function(req,res,next){
   );
 });
 
+
+router.get('/fgetpwd',function(req,res,next){
+  res.render('login/fgetpwd',{});
+});
+
 module.exports = router;

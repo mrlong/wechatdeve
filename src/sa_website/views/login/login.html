@@ -6,8 +6,12 @@
     <meta name="author" content="mrlong.com@gmail.com">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mrlong app</title>
+    <script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap/js/bootstrap.min.js" ></script>
+    <script type="text/javascript" src='/js/bootstrap3-validation.js'></script>
     <link rel="stylesheet" type="text/css" href="/js/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/js/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
     
     <!--[if lt IE 9]>
       <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
@@ -27,62 +31,78 @@
   }
 
   .form-signin {
-    max-width: 330px;
-    padding: 15px;
+    padding: 50px;
     margin: 0 auto;
   }
-  .form-signin .form-signin-heading,
-  .form-signin .checkbox {
-    margin-bottom: 10px;
+  .form-signin-heading{
+    margin-left: 100px;
   }
-  .form-signin .checkbox {
-    font-weight: normal;
-  }
-  .form-signin .form-control {
-    position: relative;
-    font-size: 16px;
-    height: auto;
-    padding: 10px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-  .form-signin .form-control:focus {
-    z-index: 2;
-  }
-  .form-signin input[type="text"] {
-    margin-bottom: -1px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-  .form-signin input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
+
 </style>
+  
+<script>
+  $(function(){
+     $(".form-signin").validation();
+    
+    //注册
+    $("#submit").on('click',function(event){
+      // 2.最后要调用 valid()方法。
+      if ($("#form1").valid()==false){
+        $("#error-text").text("填写信息不完整。")
+        return false;
+      }            
+    });
+  });  
+  
+</script>
 
 <body>
-
+    
 <form class="form-signin" role="form" action="/login" method="post">
-
+  
   <% if(again=='true'){%>    
     <h2 class="form-signin-heading "><font color='red'>登录失败，重新登录！</font></h2>
   <%} else{%>
     <h2 class="form-signin-heading">请登录！</h2>
   <%}%>
-  <input type="text" name="loginname" class="form-control" placeholder="登录名" required autofocus>
-  <input type="password" name="password" class="form-control" placeholder="密码" required>
-  <label class="checkbox">
-    <input type="checkbox" value="true" name="rememberme"> 记住密码
-  </label>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">登 录</button>
+    
+  <fieldset>
+  <div class="row">
+    <div class="col-md-8">
+      <img id='bigeye' src="/img/bigeye.png" class="img-rounded pull-right">
+    </div>
+    <div class="col-md-4">
+      
+      <div class="form-group">
+        <label for="qq" >登录邮箱:</label>
+        <input type="text" class="form-control" id="loginname" name="loginname" placeholder="Enter QQ" check-type="mail required">
+      </div>
 
+      <div class="form-group">
+        <label for="pass">登录密码：</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password" check-type="required" minlength="6">
+        
+      </div>
+      
+      <label class="checkbox">
+        <input type="checkbox" value="true" name="rememberme"> 记住密码
+        <small class="pull-right"><a href="/login/fgetpwd">忘记密码 </a></small>
+      </label>
+      
+     <div class="form-group"> 
+      <br>
+        <button type="submit" class="btn btn-primary col-sm-6"><span class="glyphicon glyphicon-log-in"></span> 登录</button>
+        <a href="/reguser"  type="button" class="btn btn-default pull-right" >免费注册</a>
+        
+      </div> 
+    </div>
+  </div>
+</fieldset>
 </form>
     
-<script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="/js/bootstrap/js/bootstrap.min.js" ></script>
-
+  
+    
+    
 </body>
 </html>
 

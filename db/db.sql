@@ -25,7 +25,7 @@ create table if not exists `ims_members_group` (
 create table if not exists `ims_members` (
   `memb_guid` varchar(50) not null  comment '用户编一号',
   `megr_guid` varchar(50) not null  comment '哪个公司',
-  `memb_loginname` varchar(30) not null comment '登录名',
+  `memb_loginname` varchar(30) not null comment '登录名,是个邮箱',
   `memb_name` varchar(30) not null default '' comment '用户名',
   `memb_pw` varchar(200) not null comment '用户密码,md5码',
   `memb_status` tinyint(4) not null default '0' comment '会员状态，0正常，-1禁用',
