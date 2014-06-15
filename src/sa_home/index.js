@@ -31,7 +31,10 @@ router.use(function(req,res,next){
 [
 	{url:'/',name:'index'},
     {url:'/changepw',name:'changepw'},   //修改密码
-    {url:'/profile',name:'profile'}      //修改资料
+    {url:'/profile',name:'profile'},      //修改资料
+  
+    //微信管理
+    {url:'/wechatmanage',name:'wechatmanage'}   //公众号管理
 
 ].forEach(function(item){
 	router.use(item.url,require('./controllers/'+item.name));
