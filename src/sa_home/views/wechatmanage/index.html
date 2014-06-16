@@ -25,7 +25,7 @@
         <td><%=data.wech_account%></td>
         <td><%=data.wech_access_token%></td>
         <td><%=data.wech_signature%></td>  
-        <td>编辑|删除</td> 
+        <td><a href="edit/<%=data.wech_guid%>">编辑</a>|删除</td> 
     </tr>    
   <% } %>
   <% datas.map(data) %>

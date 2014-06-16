@@ -34,5 +34,6 @@ router.get('/',function(req,res,next){
 
 //增加
 router.use(require('./add.js'));
+router.use(require('./edit.js')); //编辑
 
 module.exports = router;

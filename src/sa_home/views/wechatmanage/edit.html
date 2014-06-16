@@ -1,0 +1,75 @@
+<%- include ../header.html %>
+  
+<%- include ../clinetwin.html %>
+
+<script type="text/javascript" src='/js/bootstrap3-validation.js'></script>
+  
+<script>
+  $(function(){
+    $(".form-horizontal").validation();
+    
+    //保存
+    $("#submit").on('click',function(event){
+      // 2.最后要调用 valid()方法。
+      if ($(".form-horizontal").valid(this,'填写信息不完整。')==false){
+        return false;
+      }      
+      
+    });
+    
+  });
+  
+</script>  
+  
+<ol class="breadcrumb">
+  <li><a href="/home">Home</a></li>
+  <li><a href='/home/wechatmanage/'><i class="icon-fixed-width icon-group"></i> 公众账号管理</a></li>
+  <li class="active"> 编辑</li>
+</ol>
+  
+<form class="form-horizontal" role="form" id="form1" method="post" action="post">
+  <input type="hidden" name="wech_guid" value="<%=datas.wech_guid%>">
+  <div class="form-group">
+    <label for="wech_name" class="col-sm-2 control-label">公众号名称</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="wech_name" name="wech_name" value="<%=datas.wech_name%>" check-type="required" >
+    </div>
+  </div> 
+  
+  <div class="form-group">
+    <label for="wech_account" class="col-sm-2 control-label">公众号账号</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="wech_account" name="wech_account" value="<%=datas.wech_account%>" check-type="required" >
+    </div>
+  </div> 
+  
+  <div class="form-group">
+    <label for="wech_access_token" class="col-sm-2 control-label">存取凭证</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="wech_access_token" name="wech_access_token" value="<%=datas.wech_access_token%>" check-type="required" >
+    </div>
+  </div>
+  
+  
+  <div class="form-group">
+    <label for="wech_signature" class="col-sm-2 control-label">功能介绍</label>
+    <div class="col-sm-6">
+      <textarea class="form-control" rows="3" id="wech_signature" name="wech_signature"><%=datas.wech_signature%></textarea>
+    </div>
+  </div>
+  
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" id="submit" class="btn btn-primary">保 存</button>
+ 
+  </div>
+  
+  
+  <div class="form-group">
+  
+  </div>
+  
+</form>  
+
+<%- include ../footer.html %>
