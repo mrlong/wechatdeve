@@ -9,5 +9,29 @@
   
 
 <a href="add" class="btn btn-default " role="button"><i class="icon-plus"></i>增加公众账号</a>
+<p>
+<table class="table table-bordered table-hover table-condensed">
+  <tr>
+    <th>公众号名称</th>
+    <th>公众号账号</th>
+    <th>存取凭证</th>
+    <th>功能介绍</th>
+    <th>操作</th>
+  </tr>
+  
+   <% function data(data) { %>
+     <tr>
+        <td><%=data.wech_name%></td>
+        <td><%=data.wech_account%></td>
+        <td><%=data.wech_access_token%></td>
+        <td><%=data.wech_signature%></td>  
+        <td>编辑|删除</td> 
+    </tr>    
+  <% } %>
+  <% datas.map(data) %>
+</table>
 
+
+  
+  
 <%- include ../footer.html %>

@@ -27,25 +27,25 @@
   <li class="active"> 增加</li>
 </ol>
   
-<form class="form-horizontal" role="form" id="form1">
+<form class="form-horizontal" role="form" id="form1" method="post" action="add/post">
   <div class="form-group">
     <label for="wech_name" class="col-sm-2 control-label">公众号名称</label>
     <div class="col-sm-6">
-      <input type="text" class="form-control" id="wech_name" check-type="required" >
+      <input type="text" class="form-control" id="wech_name" name="wech_name" check-type="required" >
     </div>
   </div> 
   
   <div class="form-group">
     <label for="wech_account" class="col-sm-2 control-label">公众号账号</label>
     <div class="col-sm-6">
-      <input type="text" class="form-control" id="wech_account" check-type="required" >
+      <input type="text" class="form-control" id="wech_account" name="wech_account" check-type="required" >
     </div>
   </div> 
   
   <div class="form-group">
     <label for="wech_access_token" class="col-sm-2 control-label">存取凭证</label>
     <div class="col-sm-6">
-      <input type="text" class="form-control" id="wech_access_token" check-type="required" >
+      <input type="text" class="form-control" id="wech_access_token" name="wech_access_token" check-type="required" >
     </div>
   </div>
   
@@ -53,7 +53,7 @@
   <div class="form-group">
     <label for="wech_signature" class="col-sm-2 control-label">功能介绍</label>
     <div class="col-sm-6">
-      <textarea class="form-control" rows="3" id="wech_signature"></textarea>
+      <textarea class="form-control" rows="3" id="wech_signature" name="wech_signature"></textarea>
     </div>
   </div>
   
@@ -75,18 +75,3 @@
   
   
   
-  /*用户下面的微信号*/
- create table if not exists `ims_wechats` (
-  `wech_guid` varchar(50)  not null comment '用户标识. 随机生成保持不重复',
-  `wech_type` tinyint(1) unsigned not null default '1' comment '公众号类型，1微信',
-  `memb_guid` varchar(50) not null comment '关联的用户',
-  `megr_guid` varchar(50) not null comment '哪个公司',
-  `wech_token` varchar(32) not null comment '随机生成密钥',
-  `wech_access_token` varchar(300) not null default '' comment '存取凭证结构',
-  `wech_name` varchar(30) not null comment '公众号名称',
-  `wech_account` varchar(30) not null comment '微信帐号',
-  `wech_original` varchar(50) not null,
-  `wech_signature` varchar(100) not null comment '功能介绍',
- 
-  primary key (`wech_guid`)
-) engine=myisam  default charset=utf8 comment='公众平台微信号';

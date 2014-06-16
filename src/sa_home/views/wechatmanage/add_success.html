@@ -1,0 +1,19 @@
+<%- include ../header.html %>
+  
+<%- include ../clinetwin.html %>
+  
+<ol class="breadcrumb">
+  <li><a href="/home">Home</a></li>
+  <li><a href='/home/wechatmanage/'><i class="icon-fixed-width icon-group"></i> 公众账号管理</a></li>
+  <li class="active"> 增加</li>
+</ol>
+  
+  
+<% if(success){ %>
+  <h2>生成成功</h2>
+   
+<% }else{ %>  
+  <h2>生成失败</h2>  
+<%}%>
+  
+<%- include ../footer.html %>
