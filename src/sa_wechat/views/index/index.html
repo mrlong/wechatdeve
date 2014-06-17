@@ -1,0 +1,13 @@
+<%- include ../header.html %>
+  
+
+<h2>wechat</h2>
+  
+<% if(datas){%>
+    <%=datas.wech_name%>
+    
+    <a href="/wechatapp/profile/<%=datas.wech_guid%>">基本信息</a>  
+      
+<%}%>
+
+<%- include ../footer.html %>

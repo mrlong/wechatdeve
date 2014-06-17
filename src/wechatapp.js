@@ -49,10 +49,11 @@ app.use(function(req,res,next){
 });
 
 
-app.use('/wechat',require('./wechat'));
+app.use('/wechat',require('./wechatapi'));
 app.use('/',require('./middleware'));     //中间件，用于处理所有请求的必经过的
 app.use('/',require('./sa_website'));
 app.use('/home',require('./sa_home'));
+app.use('/wechatapp',require('./sa_wechat'));
 
 
 app.use(function(req, res, next){

@@ -1,0 +1,146 @@
+<script type="text/javascript"> 
+   /*
+    * 处理当前选中的样式显示内容
+    * 作者：龙仕云  2015-5-27
+    *
+    */
+  
+    $(function(){
+      var olditem = $(".list-group a[class='list-group-item active']");
+      olditem.removeClass('active');
+      var oldparent = olditem.parent();
+      
+      var item = $(".list-group a[href='<%=req_path%>']");
+      item.addClass('active'); 
+      
+      //不一样切换
+      if(oldparent !== item.parent()){
+        
+        oldparent.removeClass('in').attr('style','height: 0px;');
+        oldparent.parent('.panel').removeClass('panel-info').addClass('panel-default');
+        
+        item.parent().addClass('in').attr('style','height: auto;');
+        item.parent().parent('.panel').addClass('panel-info').removeClass('panel-default');
+        
+      }
+      else{
+         // 与原来一样不必设了。
+      }
+    });
+
+</script>
+
+
+<div class="row" >
+<!--导航-->
+<div id="left-side" class="col-sm-1 col-md-2">
+<div class="panel-group hide-sm nav-sitemenu " id="nav-accordion">
+ <!-- 1 -->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h6 class="panel-title">
+        <span class="badge badge-info">3</span>
+        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#nav-accordion" href="#nav-panel-1">
+          
+          <i class="icon-male icon-lock"></i>
+          
+          公众平台
+          
+        </a>
+      </h6>
+    </div>
+    <div id="nav-panel-1" class="list-group panel-collapse collapse" style="height: 0px;">
+      
+      <a href="/home/changepw" class="list-group-item active">
+        <i class="icon-fixed-width icon-globe"></i>
+        基本信息
+      </a>
+      
+      <a href="/home/profile" class="list-group-item">
+        <i class="icon-fixed-width icon-flag"></i>
+        用户管理
+      </a>
+      
+      <a href="/app/kitchensink/" class="list-group-item">
+        <i class="icon-fixed-width icon-briefcase"></i>
+        积分记录
+      </a>
+      
+    </div>
+  </div>
+  <!--  2 -->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h6 class="panel-title">
+        <span class="badge badge-info">5</span>
+        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#nav-accordion" href="#nav-panel-2">
+          
+          <i class="icon-fixed-width icon-lock"></i>
+          微信管理
+          
+        </a>
+      </h6>
+    </div>
+    <div id="nav-panel-2" class="list-group panel-collapse collapse">
+      
+      <a href="/home/wechatmanage/" class="list-group-item">
+        <i class="icon-fixed-width icon-group"></i>
+        公众账号管理
+      </a>
+      
+      <a href="/auth/permission/" class="list-group-item">
+        <i class="icon-fixed-width icon-lock"></i>
+        默认回复 
+      </a>
+      
+      <a href="/auth/user/" class="list-group-item">
+        <i class="icon-fixed-width icon-user"></i>
+        关键字自动回复
+      </a>
+      
+      <a href="/auth/user/" class="list-group-item">
+        <i class="icon-fixed-width icon-user"></i>
+        自定义菜单
+      </a>
+      
+      <a href="/auth/user/" class="list-group-item">
+        <i class="icon-fixed-width icon-user"></i>
+        粉丝管理
+      </a>
+      
+      
+    </div>
+  </div>
+  <!-- 3 -->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h6 class="panel-title">
+        <span class="badge badge-info">1</span>
+        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#nav-accordion" href="#nav-panel-3">
+          
+          <i class="icon-fixed-width icon-comment"></i>
+          
+          微网站
+          
+        </a>
+      </h6>
+    </div>
+    <div id="nav-panel-3" class="list-group panel-collapse collapse">
+      
+      <a href="/comments/comment/" class="list-group-item">
+        <i class="icon-fixed-width icon-comment"></i>
+        评论
+      </a>
+      
+    </div>
+  </div>
+  
+  
+  
+</div> 
+<!-- end nav -->
+</div> 
+
+    
+<!--右边内容-->
+<div class="col-md-10"> 
