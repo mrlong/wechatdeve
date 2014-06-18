@@ -11,10 +11,10 @@
   
 <h2>wechat</h2>
   
-<% if(datas){%>
-    <%=datas.wech_name%>
+<% if(currwechat){%>
+    <%=currwechat.wech_name%>
     
-    <a href="/wechatapp/profile/<%=datas.wech_guid%>">基本信息</a>  
+    <a href="/wechat/profile/<%=currwechat.wech_guid%>">基本信息</a>  
       
 <%}%>
 

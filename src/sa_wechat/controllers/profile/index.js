@@ -18,7 +18,7 @@ router.get('/:guid',function(req,res,next){
     wech_guid : req.params.guid
   });
   
-  res.render('profile/index',{wech_guid:data.wech_guid});
+  res.render('profile/index',{});
   
 });
 

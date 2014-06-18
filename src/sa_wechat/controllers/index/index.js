@@ -19,15 +19,8 @@ router.get('/:guid',function(req,res,next){
   });
   data.xss().trim();
   
-  Db.query('SELECT * FROM ims_wechats where wech_guid=?',[data.wech_guid],function(err,results){
-    if(!err && results.length>0){
-      
-      res.render('index/index',{datas:results[0]});
-    }
-    else{
-      res.render('index/index',{datas:null}); 
-    }
-  });
+
+  res.render('index/index',{datas:null}); 
   
 });
 

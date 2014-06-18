@@ -9,6 +9,8 @@ var express = require('express');
 var router = express.Router();
 var config = require('../config');
 var util = require('../lib/util');
+var Obj = require('../lib/obj');
+var Db = require('../lib/db');
 
 
 //认证
@@ -27,13 +29,41 @@ router.use(auths);
 
 router.use(function(req,res,next){
   var app = req.app;
+
   app.set('views',  __dirname +  '/views');
   next();
 });
 
+//
+//目的是为了取出当前的公众账号内容 
+//可以采用 currwechat获取当前的值。
+//
+router.get('/:controllers/:guid',function(req,res,next){
+  //console.log('guid:' + req.params.guid);
+  //console.log(req.originalUrl);
+  var data = new Obj({
+    wech_guid : req.params.guid
+  });
+  
+  data.xss().trim();
+  
+  Db.query('SELECT * FROM ims_wechats where wech_guid=?',[data.wech_guid],function(err,results){
+    if(!err && results.length>0){
+      res.locals.currwechat = results[0];
+      next();
+    }
+    else{
+      res.render('ontfoundwechat',{});
+      //next();
+    }
+  });
+  
+  
+});
+
 //控制器列表。
 [
-	{url:'/',name:'index'},
+	{url:'/index',name:'index'},
     {url:'/profile',name:'profile'}
 
 ].forEach(function(item){
