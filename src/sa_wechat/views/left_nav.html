@@ -10,7 +10,7 @@
       olditem.removeClass('active');
       var oldparent = olditem.parent();
       
-      var item = $(".list-group a[href='<%=req_path%>']");
+      var item = $(".list-group a[href^='<%=req_path%>']");
       item.addClass('active'); 
       
       //不一样切换
@@ -56,7 +56,7 @@
         基本信息
       </a>
       
-      <a href="/home/profile" class="list-group-item">
+      <a href="/wechat/users/<%=currwechat.wech_guid%>" class="list-group-item">
         <i class="icon-user"></i>
         用户管理
       </a>

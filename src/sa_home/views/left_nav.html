@@ -10,7 +10,7 @@
       olditem.removeClass('active');
       var oldparent = olditem.parent();
       
-      var item = $(".list-group a[href='<%=req_path%>']");
+      var item = $(".list-group a[href^='<%=req_path%>']");
       item.addClass('active'); 
       
       //不一样切换

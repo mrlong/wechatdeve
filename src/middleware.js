@@ -69,6 +69,7 @@ router.use(function(req,res,next){
     };
 });
 
+
 //页面模板变量
 // req_path = req.path
 router.use(function(req,res,next){

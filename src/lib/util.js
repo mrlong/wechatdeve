@@ -159,3 +159,23 @@ exports.newGuid = function()
     }
   return guid;    
 }
+
+//
+// 获取上级的路径：
+//  如：  /wechat/users/xxxxxxx/reaload 返回 /wechat/users/xxxxxxxxxx
+//   
+
+exports.getParentPath=function (path){
+  var data = path.split('/');
+  var ppath = '';
+  for (var i=0; i < data.length-1; i++)
+  { 
+      if(ppath===''){
+        ppath = data[i];
+      }
+      else{
+        ppath = ppath + '/' + data[i];
+      }
+  };
+  return ppath;
+}

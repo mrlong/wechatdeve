@@ -1,0 +1,19 @@
+<%- include ../header.html %>
+<!--左边菜单-->
+<%- include ../left_nav.html %>     
+
+  
+<ol class="breadcrumb">
+  <li><a href="/wechat/index/<%=currwechat.wech_guid%>">Home</a></li>
+  <li class="active"><i class="icon-fixed-width icon-group"></i> 用户管理</li>
+</ol>
+  
+
+<a href="/wechat/users/<%=currwechat.wech_guid%>/reload" class="btn btn-default " role="button"><i class="icon-retweet"></i>1刷新用户</a>
+<p>
+<table class="table table-bordered table-hover table-condensed">
+  
+</table>
+    
+
+<%- include ../footer.html %>

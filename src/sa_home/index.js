@@ -29,7 +29,7 @@ router.use(function(req,res,next){
 
 //控制器列表。
 [
-	{url:'/',name:'index'},
+	{url:'/index',name:'index'},
     {url:'/changepw',name:'changepw'},   //修改密码
     {url:'/profile',name:'profile'},      //修改资料
   
